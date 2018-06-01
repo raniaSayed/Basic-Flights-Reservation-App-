@@ -7,14 +7,14 @@ var app = express();
 var mongoose = require("mongoose");
 
 //connect to mongodb
-mongoose.connect("mongodb://localhost:27017/fligth_reservation313");
+mongoose.connect("mongodb://localhost/fligth_reservation313");
 
 //register models
 fs.readdirSync(path.join(__dirname,"models")).forEach(function (filename) {
     require("./models/"+filename);
 });
 
-//api body-parser middleware
+//add body-parser middleware
 app.use(bodyParser.json());
 
 var reservation = require('./controllers/reservation');

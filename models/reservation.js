@@ -1,5 +1,7 @@
 var mongoose = require("mongoose");
-
+autoIncrement = require('mongoose-auto-increment');
+var connection = mongoose.createConnection("mongodb://localhost/fligth_reservation313");
+autoIncrement.initialize(connection);
 //plugin which adds pre-save validation for unique fields
 var uniqueValidator = require('mongoose-unique-validator');
 
@@ -20,12 +22,13 @@ var reservations = new Schema(
     telephone:{
       type:Number,
       required:true,
-      unique:true
+      unique:true,
     },
     seat_number:{
         type:Number,
         required:true,
-        unique:true
+        unique:true,
+        min:1
     },
     created_at:{
       type:String
