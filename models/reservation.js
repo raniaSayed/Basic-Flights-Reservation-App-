@@ -32,7 +32,7 @@ var reservations = new Schema(
     }
   });
 
-  // order plugins
+  //reservation plugins
 reservations.plugin(autoIncrement.plugin, {
     model: 'reservations',
     startAt: 1001,
@@ -40,10 +40,18 @@ reservations.plugin(autoIncrement.plugin, {
 reservations.plugin(uniqueValidator);
 
 //Model Register
-mongoose.model("contacts",contacts);
+mongoose.model("reservations",reservations);
 
 var ReservationModel = {};
 
 ReservationModel.model = mongoose.model("reservations");
+
+ReservationModel.add =  (reservation, callback)=> {
+    reservation.created_at = Date.now();
+    reservationObj = new ReservationModel.model(reservation);
+    reservationObj.save((error, doc)=>{
+      callback(error, doc)
+    });
+};
 
 module.exports = ReservationModel
