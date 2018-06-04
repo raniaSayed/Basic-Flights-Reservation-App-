@@ -5,6 +5,7 @@ var fs = require("fs");
 var emailValidator = require("email-validator");
 
 var ReservationModel = require("../models/reservation");
+var SeatsModel = require("../models/seat");
 
 
 router.get("/",(req,res)=>{
@@ -35,7 +36,13 @@ router.post("/add",(req,res)=>{
     else{
         ReservationModel.add(reservation,(err,doc)=>{
             if(!err){
-                res.send({message:"success" ,code :200 , data:doc});
+                SeatsModel.reserveSeat(reservationObj.seat_number,(error,seatDoc)=>{
+                    if(!error){
+                        res.send({message:"success" ,code :200 , data:doc});
+                    }else{
+                        res.send({message:"error",error});
+                    }
+                });
             }else{
                 res.send({message:"error",err});
             }
