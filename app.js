@@ -20,6 +20,9 @@ app.use(bodyParser.json());
 var reservation = require('./controllers/reservation');
 app.use('/reservation',reservation);
 
+var seat = require('./controllers/seat');
+app.use('/seat',seat);
+
 //start listenning
 app.listen(9090,function(){
     console.log("Starting....")

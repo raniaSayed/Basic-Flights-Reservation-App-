@@ -7,8 +7,16 @@ var emailValidator = require("email-validator");
 var ReservationModel = require("../models/reservation");
 
 
-router.get("/add",(req,res)=>{
-
+router.get("/",(req,res)=>{
+    SeatModel.getAllReservations(
+        (err,result)=>{
+            if(!err){
+                res.json(result);
+            }else{
+                res.json(err);
+            }
+        }
+    )
 });
 router.post("/add",(req,res)=>{
     //=================================add required validations======================
@@ -25,7 +33,6 @@ router.post("/add",(req,res)=>{
         res.json({message:"unvalid telephone number - should be 11 numbers"});
     }
     else{
-
         ReservationModel.add(reservation,(err,doc)=>{
             if(!err){
                 res.send({message:"success" ,code :200 , data:doc});

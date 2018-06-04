@@ -5,7 +5,7 @@ autoIncrement.initialize(connection);
 //plugin which adds pre-save validation for unique fields
 var uniqueValidator = require('mongoose-unique-validator');
 var refValidator = require('mongoose-ref-validator');
-var SeatsModel = require("../models/seats");
+var SeatsModel = require("../models/seat");
 
 
 //ORM Mapping
@@ -32,7 +32,12 @@ var reservations = new Schema(
         required:true,
         unique:true,
         ref:"seats",
-        conditions: {} // Enables validation
+        conditions: {} // Enables ref validation
+    },
+    ticket_id:{
+      type:Number,
+      unique:true,
+      required:true
     },
     created_at:{
       type:String
@@ -59,13 +64,15 @@ ReservationModel.add =  (reservation, callback)=> {
     reservation.created_at = Date.now();
     reservationObj = new ReservationModel.model(reservation);
     reservationObj.save((error, doc)=>{
-      SeatsModel.reserveSeat(reservationObj.seat_number,(err,seatDoc)=>{
-        if(!err){
-          callback(error, doc);
-        }else{
-            res.send({message:"error",err});
-        }
+        SeatsModel.reserveSeat(reservationObj.seat_number,(err,seatDoc)=>{
+            callback(error, doc);
+        });
     });
+};
+
+ReservationModel.getAllReservations =  (callback)=> {
+  ReservationModel.model.find({},(error, doc)=>{
+      callback(error, doc)
     });
 };
 
