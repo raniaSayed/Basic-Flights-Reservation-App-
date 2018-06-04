@@ -8,9 +8,15 @@ var Schema = mongoose.Schema;
 var seats = new Schema(
   {
     _id:{
-      type:Number,
+      type:String,
       required:true
     },
+    name:{
+      type:String,
+      required:true,
+      unique:true
+    },
+
     available:{
       type:Boolean
     }
@@ -33,6 +39,12 @@ SeatsModel.reserveSeat =  (seat_number, callback)=> {
 
 SeatsModel.getAllSeats =  (callback)=> {
   SeatsModel.model.find({},(error, doc)=>{
+      callback(error, doc)
+    });
+};
+
+SeatsModel.getReservedSeats =  (callback)=> {
+  SeatsModel.model.find({available:false},(error, doc)=>{
       callback(error, doc)
     });
 };

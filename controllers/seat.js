@@ -18,4 +18,15 @@ router.get("/",(req,res)=>{
     )
 });
 
+router.get("/reserved",(req,res)=>{
+    SeatModel.getReservedSeats(
+        (err,result)=>{
+            if(!err){
+                res.json(result);
+            }else{
+                res.json(err);
+            }
+        }
+    )
+});
 module.exports = router;
