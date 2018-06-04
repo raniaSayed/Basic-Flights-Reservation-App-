@@ -4,6 +4,9 @@ var connection = mongoose.createConnection("mongodb://localhost/fligth_reservati
 autoIncrement.initialize(connection);
 //plugin which adds pre-save validation for unique fields
 var uniqueValidator = require('mongoose-unique-validator');
+var refValidator = require('mongoose-ref-validator');
+var SeatsModel = require("../models/seats");
+
 
 //ORM Mapping
 var Schema = mongoose.Schema;
@@ -28,7 +31,8 @@ var reservations = new Schema(
         type:Number,
         required:true,
         unique:true,
-        min:1
+        ref:"seats",
+        conditions: {} // Enables validation
     },
     created_at:{
       type:String
@@ -41,6 +45,8 @@ reservations.plugin(autoIncrement.plugin, {
     startAt: 1001,
 });
 reservations.plugin(uniqueValidator);
+mongoose.plugin(require('mongoose-ref-validator'));
+
 
 //Model Register
 mongoose.model("reservations",reservations);
@@ -53,7 +59,13 @@ ReservationModel.add =  (reservation, callback)=> {
     reservation.created_at = Date.now();
     reservationObj = new ReservationModel.model(reservation);
     reservationObj.save((error, doc)=>{
-      callback(error, doc)
+      SeatsModel.reserveSeat(reservationObj.seat_number,(err,seatDoc)=>{
+        if(!err){
+          callback(error, doc);
+        }else{
+            res.send({message:"error",err});
+        }
+    });
     });
 };
 
