@@ -14,7 +14,7 @@ for(var i = 1 ;i < 11 ;i++){ \n
     for(var j = 0 ;j < 6 ;j++){ \n
       seats.push({_id:(i+chars[j]),available:true}); \n
     }\n
-}
+} \n
 db.seats.insert(seats) \n
 
 Start App ===> npm start \n
