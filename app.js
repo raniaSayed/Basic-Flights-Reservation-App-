@@ -16,7 +16,7 @@ fs.readdirSync(path.join(__dirname,"models")).forEach(function (filename) {
 app.use((req,resp,next)=>{
     resp.header("Access-Control-Allow-Origin","*");
     resp.header("Access-Control-Allow-Headers","Content-Type,x-access-token");
-    resp.header("Access-Control-Allow-Methods","GET,POST")
+    resp.header("Access-Control-Allow-Methods","GET,POST");
     next();
   });
 
