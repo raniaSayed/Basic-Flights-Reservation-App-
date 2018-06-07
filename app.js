@@ -13,6 +13,12 @@ mongoose.connect("mongodb://localhost/fligth_reservation313");
 fs.readdirSync(path.join(__dirname,"models")).forEach(function (filename) {
     require("./models/"+filename);
 });
+app.use((req,resp,next)=>{
+    resp.header("Access-Control-Allow-Origin","*");
+    resp.header("Access-Control-Allow-Headers","Content-Type,x-access-token");
+    resp.header("Access-Control-Allow-Methods","GET,POST")
+    next();
+  });
 
 //add body-parser middleware
 app.use(bodyParser.json());
