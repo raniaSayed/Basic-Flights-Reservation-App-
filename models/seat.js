@@ -11,12 +11,6 @@ var seats = new Schema(
       type:String,
       required:true
     },
-    name:{
-      type:String,
-      required:true,
-      unique:true
-    },
-
     available:{
       type:Boolean
     }

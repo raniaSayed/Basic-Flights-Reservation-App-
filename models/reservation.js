@@ -26,7 +26,7 @@ var reservations = new Schema(
       unique:true,
     },
     seat_number:{
-        type:Number,
+        type:String,
         required:true,
         unique:true,
         ref:"seats",

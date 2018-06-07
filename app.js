@@ -14,6 +14,14 @@ fs.readdirSync(path.join(__dirname,"models")).forEach(function (filename) {
     require("./models/"+filename);
 });
 
+
+app.use((req,res,next)=>{
+  res.header("Access-Control-Allow-Origin","*");
+  res.header("Access-Control-Allow-Headers","Content-Type,x-access-token");
+  res.header("Access-Control-Allow-Methods","GET,POST,PUT,DELETE")
+  next();
+});
+
 //add body-parser middleware
 app.use(bodyParser.json());
 
