@@ -18,6 +18,7 @@
     "mongoose-auto-increment": "^5.0.1",
     "mongoose-ref-validator": "^1.0.21",
     "mongoose-unique-validator": "^2.0.1",
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.17.5",
+    "randomstring": "^1.1.5"
   }
 }
