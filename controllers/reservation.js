@@ -9,7 +9,7 @@ var SeatsModel = require("../models/seat");
 
 
 router.get("/",(req,res)=>{
-    SeatModel.getAllReservations(
+    ReservationModel.getAllReservations(
         (err,result)=>{
             if(!err){
                 res.json(result);

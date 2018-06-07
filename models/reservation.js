@@ -5,6 +5,7 @@ autoIncrement.initialize(connection);
 //plugin which adds pre-save validation for unique fields
 var uniqueValidator = require('mongoose-unique-validator');
 var refValidator = require('mongoose-ref-validator');
+var randomstring = require("randomstring");
 
 //ORM Mapping
 var Schema = mongoose.Schema;
@@ -33,9 +34,8 @@ var reservations = new Schema(
         conditions: {} // Enables ref validation
     },
     ticket_id:{
-      type:Number,
-      unique:true,
-      required:true
+      type:String,
+      unique:true
     },
     created_at:{
       type:String
@@ -60,6 +60,8 @@ ReservationModel.model = mongoose.model("reservations");
 
 ReservationModel.add =  (reservation, callback)=> {
     reservation.created_at = Date.now();
+    //
+    reservation.ticket_id = randomstring.generate(10);
     reservationObj = new ReservationModel.model(reservation);
     reservationObj.save((error, doc)=>{
       callback(error, doc);
