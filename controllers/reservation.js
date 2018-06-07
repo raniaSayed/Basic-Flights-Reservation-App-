@@ -19,7 +19,7 @@ router.get("/",(req,res)=>{
         }
     )
 });
-router.post("/add",(req,res)=>{
+router.post("/",(req,res)=>{
     //=================================add required validations======================
     reservation = req.body;
 
