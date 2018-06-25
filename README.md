@@ -1,6 +1,7 @@
 
-<h2>Auto Generate App</h2>
-This is simple application that listen to schema file and auto generate mongoose schema and ejs template
+<h2>Basic Flight Reservation API</h2>
+NodeJs-MonogDB API single page application for booking flight seats.
+
 
 
 <h2>Getting Started</h2>
@@ -32,15 +33,22 @@ Execute this script on mongo shell
 
 <h4> Add inital seats to system with this script </h4>
 
- use fligth_reservation313; 
- let  seats = []; 
- let chars = ["A","B","C","D","E","F"]; 
-for(var i = 1 ;i < 11 ;i++){ 
-    for(var j = 0 ;j < 6 ;j++){ 
-      seats.push({_id:(i+chars[j]),available:true}); 
-    }
-} 
-db.seats.insert(seats) 
+
+    use fligth_reservation313; 
+
+    let  seats = []; 
+
+    let chars = ["A","B","C","D","E","F"]; 
+
+    for(var i = 1 ;i < 11 ;i++){ 
+
+      for(var j = 0 ;j < 6 ;j++){ 
+
+        seats.push({_id:(i+chars[j]),available:true}); 
+       }
+    } 
+    db.seats.insert(seats) 
+
 
 start app via https://localhost:9090/
 
@@ -68,15 +76,20 @@ Execute this script on mongo shell
 
 <h4> Add inital seats to system with this script </h4>
 
- use fligth_reservation313; 
- let  seats = []; 
- let chars = ["A","B","C","D","E","F"]; 
-for(var i = 1 ;i < 11 ;i++){ 
-    for(var j = 0 ;j < 6 ;j++){ 
-      seats.push({_id:(i+chars[j]),available:true}); 
-    }
-} 
-db.seats.insert(seats) 
+    use fligth_reservation313; 
+
+    let  seats = []; 
+
+    let chars = ["A","B","C","D","E","F"]; 
+
+    for(var i = 1 ;i < 11 ;i++){ 
+
+      for(var j = 0 ;j < 6 ;j++){ 
+
+        seats.push({_id:(i+chars[j]),available:true}); 
+       }
+    } 
+    db.seats.insert(seats) 
 
 
 start app via https://localhost:9090/
