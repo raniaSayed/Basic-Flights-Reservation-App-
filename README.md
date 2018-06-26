@@ -10,9 +10,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 <h2>Prerequisites (Used Technologies) </h2>
 
-Node.js v8.10.0 or above
+<a href="https://nodejs.org/en/docs/">Node.js</a> v8.10.0 or above
 
-mongoDB database engine v3.6.3
+<a href="https://docs.mongodb.com/">MongoDB</a> database engine v3.6.3
 
 <h2>Installation</h2>
 
